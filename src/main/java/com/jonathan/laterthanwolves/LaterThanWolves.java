@@ -1,6 +1,10 @@
 package com.jonathan.laterthanwolves;
 
+import com.jonathan.laterthanwolves.block.ModBlocks;
+import com.jonathan.laterthanwolves.item.ModCreativeModeTabs;
+import com.jonathan.laterthanwolves.item.ModItems;
 import com.mojang.logging.LogUtils;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,16 +19,21 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
-@Mod(Laterthanwolves.MOD_ID)
-public class Laterthanwolves {
+@Mod(LaterThanWolves.MOD_ID)
+public class LaterThanWolves {
 
   public static final String MOD_ID = "laterthanwolves";
   private static final Logger LOGGER = LogUtils.getLogger();
 
-  public Laterthanwolves(IEventBus modEventBus, ModContainer modContainer) {
+  public LaterThanWolves(IEventBus modEventBus, ModContainer modContainer) {
     modEventBus.addListener(this::commonSetup);
 
     NeoForge.EVENT_BUS.register(this);
+
+    ModCreativeModeTabs.register(modEventBus);
+
+    ModItems.register(modEventBus);
+    ModBlocks.register(modEventBus);
 
     modEventBus.addListener(this::addCreative);
 
@@ -36,7 +45,12 @@ public class Laterthanwolves {
   }
 
   private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
+    if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+      event.accept(ModItems.STEEL_INGOT);
+    }
+    if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+      event.accept(ModBlocks.STEEL_BLOCK);
+    }
   }
 
   @SubscribeEvent
