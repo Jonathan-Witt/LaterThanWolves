@@ -20,36 +20,36 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 
 public class ChiselItem extends DiggerItem {
-  public static final Map<Block, Block> CHISEL_BLOCK =
+  public static final Map<BlockState, BlockState> CHISEL_BLOCK =
       Map.of(
-          Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE,
-          Blocks.COBBLED_DEEPSLATE, Blocks.STONE,
-          Blocks.STONE, Blocks.COBBLESTONE,
-          Blocks.COBBLESTONE, Blocks.GRAVEL
+          Blocks.DEEPSLATE.defaultBlockState(), Blocks.COBBLED_DEEPSLATE.defaultBlockState(),
+          Blocks.COBBLED_DEEPSLATE.defaultBlockState(), Blocks.STONE.defaultBlockState(),
+          Blocks.STONE.defaultBlockState(), Blocks.COBBLESTONE.defaultBlockState(),
+          Blocks.COBBLESTONE.defaultBlockState(), Blocks.GRAVEL.defaultBlockState()
       );
 
-  public static final Map<Block, Item> CHISEL_ITEM =
+  public static final Map<BlockState, ItemStack> CHISEL_ITEM =
       Map.of(
-          Blocks.DEEPSLATE, Items.GRAVEL,
-          Blocks.COBBLED_DEEPSLATE, Items.GRAVEL,
-          Blocks.STONE, Items.GRAVEL,
-          Blocks.COBBLESTONE, Items.GRAVEL
+          Blocks.DEEPSLATE.defaultBlockState(), new ItemStack(Items.GRAVEL),
+          Blocks.COBBLED_DEEPSLATE.defaultBlockState(), new ItemStack(Items.GRAVEL),
+          Blocks.STONE.defaultBlockState(), new ItemStack(Items.GRAVEL),
+          Blocks.COBBLESTONE.defaultBlockState(), new ItemStack(Items.GRAVEL)
       );
 
   public ChiselItem(Tier tier, Properties properties) {
     super(tier, BlockTags.MINEABLE_WITH_PICKAXE, properties);
   }
 
-  @Override
-  public boolean mineBlock(ItemStack stack, Level level, BlockState brokenBlock, BlockPos pos, LivingEntity miningEntity) {
-    Tool tool = stack.get(DataComponents.TOOL);
-    if (!level.isClientSide && brokenBlock.getDestroySpeed(level, pos) != 0.0F && tool.damagePerBlock() > 0) {
-      stack.hurtAndBreak(tool.damagePerBlock(), miningEntity, EquipmentSlot.MAINHAND);
-      if(CHISEL_BLOCK.containsKey(brokenBlock)) {
-        level.setBlockAndUpdate(pos, CHISEL_BLOCK.get(brokenBlock).defaultBlockState());
-        Block.popResource(level, pos, new ItemStack(CHISEL_ITEM.get(brokenBlock)));
-      }
-    }
-    return false;
-  }
+//  @Override
+//  public boolean mineBlock(ItemStack stack, Level level, BlockState brokenBlock, BlockPos pos, LivingEntity miningEntity) {
+//    Tool tool = stack.get(DataComponents.TOOL);
+//    if (!level.isClientSide && brokenBlock.getDestroySpeed(level, pos) != 0.0F && tool.damagePerBlock() > 0) {
+//      stack.hurtAndBreak(tool.damagePerBlock(), miningEntity, EquipmentSlot.MAINHAND);
+//      if(CHISEL_BLOCK.containsKey(brokenBlock)) {
+//        level.setBlockAndUpdate(pos, CHISEL_BLOCK.get(brokenBlock));
+//        Block.popResource(level, pos, CHISEL_ITEM.get(brokenBlock));
+//      }
+//    }
+//    return false;
+//  }
 }

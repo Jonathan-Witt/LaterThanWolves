@@ -23,6 +23,12 @@ public class ModCreativeModeTabs {
             output.accept(ModItems.STEEL_INGOT);
             output.accept(ModBlocks.STEEL_BLOCK);
             output.accept(ModItems.DIAMOND_CHISEL);
+
+            output.accept(ModItems.COPPER_AXE);
+            output.accept(ModItems.COPPER_HOE);
+            output.accept(ModItems.COPPER_PICKAXE);
+            output.accept(ModItems.COPPER_SHOVEL);
+            output.accept(ModItems.COPPER_SWORD);
           })
           .build());
 
