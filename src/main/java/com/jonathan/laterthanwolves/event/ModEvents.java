@@ -68,12 +68,6 @@ public class ModEvents {
           event.getLevel().setBlock(initialBlockPos, CHISEL_BLOCK.get(event.getState().getBlock()), 35);
           Block.popResourceFromFace((Level) event.getLevel(), initialBlockPos, Objects.requireNonNull(getTargetedFace(player, (Level) event.getLevel())), CHISEL_ITEM.get(event.getState().getBlock()));
           mainHandItem.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
-          player.sendSystemMessage(Component.literal(Objects.requireNonNull(getTargetedFace(player, (Level) event.getLevel())).toString()));
-          player.sendSystemMessage(Component.literal(CHISEL_ITEM.get(event.getState().getBlock()).toString()));
-          player.sendSystemMessage(Component.literal(((Level) event.getLevel()).toString()));
-          player.sendSystemMessage(Component.literal(initialBlockPos.toString()));
-          player.sendSystemMessage(Component.literal(event.getState().toString()));
-          player.sendSystemMessage(Component.literal(CHISEL_ITEM.toString()));
         }
 
       }
