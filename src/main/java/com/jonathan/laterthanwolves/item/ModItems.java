@@ -18,6 +18,24 @@ public class ModItems {
   public static final DeferredItem<Item> STEEL_INGOT = ITEMS.register("steel_ingot",
       () -> new Item(new Item.Properties()));
 
+  public static final DeferredItem<Item> ROCK = ITEMS.register("rock",
+      () -> new Item(new Item.Properties()));
+
+  public static final DeferredItem<Item> GRAVEL_PILE = ITEMS.register("gravel_pile",
+      () -> new Item(new Item.Properties()));
+
+  public static final DeferredItem<Item> POINTY_STICK = ITEMS.register("pointy_stick",
+      () -> new ChiselItem(Tiers.WOOD, new Item.Properties()));
+
+  public static final DeferredItem<Item> SHARP_STONE = ITEMS.register("sharp_stone",
+      () -> new ChiselItem(Tiers.STONE, new Item.Properties()));
+
+  public static final DeferredItem<Item> IRON_CHISEL = ITEMS.register("iron_chisel",
+      () -> new ChiselItem(Tiers.IRON, new Item.Properties()));
+
+  public static final DeferredItem<Item> COPPER_CHISEL = ITEMS.register("copper_chisel",
+      () -> new ChiselItem(ModToolTiers.COPPER, new Item.Properties()));
+
   public static final DeferredItem<Item> DIAMOND_CHISEL = ITEMS.register("diamond_chisel",
       () -> new ChiselItem(Tiers.DIAMOND, new Item.Properties()));
 

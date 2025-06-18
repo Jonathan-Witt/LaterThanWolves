@@ -8,6 +8,13 @@
   "item.laterthanwolves.diamond_chisel": "Diamond Chisel",
 
   "block.laterthanwolves.steel_block": "Block of Steel",
+  "block.laterthanwolves.chiseled_stone": "Chiseled Stone",
+  "block.laterthanwolves.chipped_stone": "Chipped Stone",
+  "block.laterthanwolves.cracked_stone": "Cracked Stone",
+  "block.laterthanwolves.chiseled_cobblestone": "Chiseled Cobblestone",
+  "block.laterthanwolves.chipped_cobblestone": "Chipped Cobblestone",
+  "block.laterthanwolves.cracked_cobblestone": "Cracked Cobblestone",
+  "block.laterthanwolves.smooth_stone": "Smooth Stone",
 
   "creativetab.laterthanwolves.laterthanwolves": "Later Than Wolves"
 }

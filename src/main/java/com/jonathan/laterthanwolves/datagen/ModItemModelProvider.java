@@ -14,11 +14,19 @@ public class ModItemModelProvider extends ItemModelProvider {
   @Override
   protected void registerModels() {
     basicItem(ModItems.STEEL_INGOT.get());
+//    basicItem(ModItems.ROCK.get());
+//    basicItem(ModItems.GRAVEL_PILE.get());
+
     basicItem(ModItems.COPPER_AXE.get());
     basicItem(ModItems.COPPER_HOE.get());
     basicItem(ModItems.COPPER_PICKAXE.get());
     basicItem(ModItems.COPPER_SHOVEL.get());
     basicItem(ModItems.COPPER_SWORD.get());
+
     basicItem(ModItems.DIAMOND_CHISEL.get());
+//    basicItem(ModItems.IRON_CHISEL.get());
+//    basicItem(ModItems.COPPER_CHISEL.get());
+//    basicItem(ModItems.SHARP_STONE.get());
+//    basicItem(ModItems.POINTY_STICK.get());
   }
 }

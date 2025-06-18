@@ -21,6 +21,27 @@ public class ModBlocks {
   public static final DeferredBlock<Block> STEEL_BLOCK = registerBlock("steel_block",
       () -> new Block(BlockBehaviour.Properties.of().strength(8f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK)));
 
+  public static final DeferredBlock<Block> CHISELED_STONE = registerBlock("chiseled_stone",
+      () -> new Block(BlockBehaviour.Properties.of().strength(8f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+  public static final DeferredBlock<Block> CHIPPED_STONE = registerBlock("chipped_stone",
+      () -> new Block(BlockBehaviour.Properties.of().strength(8f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+  public static final DeferredBlock<Block> CRACKED_STONE = registerBlock("cracked_stone",
+      () -> new Block(BlockBehaviour.Properties.of().strength(8f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+  public static final DeferredBlock<Block> CHISELED_COBBLESTONE = registerBlock("chiseled_cobblestone",
+      () -> new Block(BlockBehaviour.Properties.of().strength(8f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+  public static final DeferredBlock<Block> CHIPPED_COBBLESTONE = registerBlock("chipped_cobblestone",
+      () -> new Block(BlockBehaviour.Properties.of().strength(8f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+  public static final DeferredBlock<Block> CRACKED_COBBLESTONE = registerBlock("cracked_cobblestone",
+      () -> new Block(BlockBehaviour.Properties.of().strength(8f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
+  public static final DeferredBlock<Block> SMOOTH_STONE = registerBlock("smooth_stone",
+      () -> new Block(BlockBehaviour.Properties.of().strength(8f).requiresCorrectToolForDrops().sound(SoundType.STONE)));
+
   private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
     DeferredBlock<T> toReturn = BLOCKS.register(name, block);
     registerBlockItem(name, toReturn);

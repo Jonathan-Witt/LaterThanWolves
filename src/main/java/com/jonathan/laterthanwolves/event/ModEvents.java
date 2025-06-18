@@ -1,6 +1,9 @@
 package com.jonathan.laterthanwolves.event;
 
 import com.jonathan.laterthanwolves.LaterThanWolves;
+import com.jonathan.laterthanwolves.block.ModBlocks;
+import com.jonathan.laterthanwolves.item.ModItems;
+import com.jonathan.laterthanwolves.item.ModToolTiers;
 import com.jonathan.laterthanwolves.item.custom.ChiselItem;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.client.multiplayer.chat.LoggedChatMessage;
@@ -12,6 +15,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -41,26 +45,37 @@ public class ModEvents {
     return (hitResult.getType() == HitResult.Type.BLOCK) ? hitResult.getDirection() : null;
   }
 
-
-
   @SubscribeEvent
   public static void onChiselUsage(BlockEvent.BreakEvent event) {
     Player player = event.getPlayer();
     ItemStack mainHandItem = player.getMainHandItem();
 
-    if (mainHandItem.getItem() instanceof ChiselItem) {
-      Map<Block, BlockState> CHISEL_BLOCK = Map.of(
-          Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE.defaultBlockState(),
-          Blocks.COBBLED_DEEPSLATE, Blocks.STONE.defaultBlockState(),
-          Blocks.STONE, Blocks.COBBLESTONE.defaultBlockState(),
-          Blocks.COBBLESTONE, Blocks.GRAVEL.defaultBlockState()
-      );
-      Map<Block, ItemStack> CHISEL_ITEM = Map.of(
-          Blocks.DEEPSLATE, new ItemStack(Items.GRAVEL),
-          Blocks.COBBLED_DEEPSLATE, new ItemStack(Items.GRAVEL),
-          Blocks.STONE, new ItemStack(Items.GRAVEL),
-          Blocks.COBBLESTONE, new ItemStack(Items.GRAVEL)
-      );
+    Map<Block, BlockState> CHISEL_BLOCK = null;
+    Map<Block, ItemStack> CHISEL_ITEM = null;
+
+    if (mainHandItem.getItem() instanceof ChiselItem chiselItem) {
+      if (chiselItem.getTier().equals(Tiers.STONE) || chiselItem.getTier().equals(Tiers.WOOD) || chiselItem.getTier().equals(ModToolTiers.COPPER)) {
+        CHISEL_BLOCK = Map.of(
+            Blocks.STONE, ModBlocks.CHISELED_STONE.get().defaultBlockState(),
+            ModBlocks.CHISELED_STONE.get(), ModBlocks.CHIPPED_STONE.get().defaultBlockState(),
+            ModBlocks.CHIPPED_STONE.get(), ModBlocks.CRACKED_STONE.get().defaultBlockState(),
+            ModBlocks.CRACKED_STONE.get(), Blocks.COBBLESTONE.defaultBlockState(),
+            Blocks.COBBLESTONE, ModBlocks.CHISELED_COBBLESTONE.get().defaultBlockState(),
+            ModBlocks.CHISELED_COBBLESTONE.get(), ModBlocks.CHIPPED_COBBLESTONE.get().defaultBlockState(),
+            ModBlocks.CHIPPED_COBBLESTONE.get(), ModBlocks.CRACKED_COBBLESTONE.get().defaultBlockState(),
+            ModBlocks.CRACKED_COBBLESTONE.get(), ModBlocks.SMOOTH_STONE.get().defaultBlockState()
+        );
+        CHISEL_ITEM = Map.of(
+            Blocks.STONE, ModItems.GRAVEL_PILE.toStack(),
+            ModBlocks.CHISELED_STONE.get(), ModItems.ROCK.toStack(),
+            ModBlocks.CHIPPED_STONE.get(), ModItems.GRAVEL_PILE.toStack(),
+            ModBlocks.CRACKED_STONE.get(), ModItems.ROCK.toStack(),
+            Blocks.COBBLESTONE, ModItems.GRAVEL_PILE.toStack(),
+            ModBlocks.CHISELED_COBBLESTONE.get(), ModItems.ROCK.toStack(),
+            ModBlocks.CHIPPED_COBBLESTONE.get(), ModItems.GRAVEL_PILE.toStack(),
+            ModBlocks.CRACKED_COBBLESTONE.get(), ModItems.ROCK.toStack()
+        );
+      }
       event.setCanceled(true);
       if (player instanceof ServerPlayer) {
         BlockPos initialBlockPos = event.getPos();
